@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {  useState } from 'react';
+
 import './App.css';
+import PadBank from './components/PadBank';
+import Options from './components/Options';
+import {bankOne, bankTwo} from './banks';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+export default function App() {
+ 
+	let [power, setPower] = useState(true);
+	let [display, setDisplay] = useState("");
+	let [volume, setVolume] = useState(80);
+	let [bank, setBank] = useState(false);
+	
+	
+	return (
+		<div className="app" id="drum-machine">
+			
+			<PadBank bank={bank? bankTwo: bankOne} power={power} setDisplay={setDisplay} volume={volume}/>
+			<Options setPower={setPower} setBank={setBank}
+			 bank={bank} power={power} 
+			 setDisplay={setDisplay} 
+			 display={display} 
+			 setVolume={setVolume}
+			 volume={volume}/>
+		</div>
+	)
 }
-
-export default App;
